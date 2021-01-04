@@ -1,67 +1,43 @@
 # frozen_string_literal: true
+require './game_logic.rb'
+require './player.rb'
 
-class Game
-  def question(current_player)
-    num1 = rand(1..20)
-    num2 = rand(1..20)
-
-    @question = puts "#{current_player.name}: What does #{num1} plus #{num2} equal?"
-    answer = $stdin.gets.chomp
-
-    # Check answer
-    if answer == (num1 + num2).to_s
-      puts 'That is correct!'
-    else
-      puts "Nope... the answer is #{num1 + num2}"
-      # decrement a life
-      current_player.lives -= 1
-    end
-  end
-
-  def turn
-    puts "\n----- NEW TURN -----"
-  end
-end
-
-class Question
-end
-
-class Player
-  attr_accessor :lives
-  attr_reader :name
-
-  def initialize(name)
-    @name = name
-    @lives = 3
-  end
-
-  def info
-    "#{name}: #{lives}/3"
-  end
-end
-
-
-puts 'Want to play a game...Two Players Math!!!'
+puts '==Two Player Math!!!=='
 # Initialize Players
-p1 = Player.new('Player 1')
-p2 = Player.new('Player 2')
+puts 'Enter name of player 1: '
+p1 = Player.new(gets.chomp)
+puts 'Enter name of player 2: '
+p2 = Player.new(gets.chomp)
+puts "#{p1.info} VS #{p2.info}... FIGHT!!! Uh I mean MATH!"
 
 current_player = p1
 
+#Initialize Game
 game = Game.new
 
-while p1.lives > 0
+while p1.lives.positive? || p2.lives.positive?
   game.question(current_player)
   # score
   puts "#{p1.info} VS #{p2.info}"
-  if p1.lives == 0 
-    puts "Good game, goodbye"
-  else
-    if current_player == p1
+
+  if p1.lives.zero? ||p2.lives.zero?
+    if p1.lives.zero?
+      #Winner becomes current player
       current_player = p2
     else
       current_player = p1
     end
-    game.turn
+    break
   end
+
+  if current_player == p1
+      current_player = p2
+    else
+      current_player = p1
+  end
+    game.turn
 end
+
+puts "#{current_player.name} Wins with a score of #{current_player.lives}/3"
+puts '---- Game Over ----'
+puts 'Good bye!'
