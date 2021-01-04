@@ -13,6 +13,4 @@ class Player
   def info
     "#{name}: #{lives}/3"
   end
-
-  
 end

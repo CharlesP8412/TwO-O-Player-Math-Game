@@ -22,5 +22,4 @@ class Game
   def turn
     puts '----- NEW TURN -----'
   end
-
 end

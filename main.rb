@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require './game_logic.rb'
 require './player.rb'
 
@@ -21,7 +22,7 @@ while p1.lives.positive? || p2.lives.positive?
   puts "#{p1.info} VS #{p2.info}"
 
   # Check endgame (End While Loop)
-  if p1.lives.zero? ||p2.lives.zero?
+  if p1.lives.zero? || p2.lives.zero?
     # Winner becomes current player
     current_player =
       if p1.lives.zero?
