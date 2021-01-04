@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Player Info
 class Player
   attr_accessor :lives
   attr_reader :name
@@ -11,4 +14,5 @@ class Player
     "#{name}: #{lives}/3"
   end
 
+  
 end

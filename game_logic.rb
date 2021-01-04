@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Game Logic
 class Game
   def question(current_player)
     num1 = rand(1..20)
@@ -10,22 +13,14 @@ class Game
     if answer == (num1 + num2).to_s
       puts 'That is correct!'
     else
-      puts "Nope... the answer is #{num1 + num2}"
+      puts "Nope... the answer is #{num1 + num2} \n\n"
       # decrement a life
       current_player.lives -= 1
     end
   end
 
   def turn
-    puts "\n----- NEW TURN -----"
-  end
-
-  def change_player(current_player)
-    if current_player == p1
-      current_player = p2
-    else
-      current_player = p1
-    end
+    puts '----- NEW TURN -----'
   end
 
 end

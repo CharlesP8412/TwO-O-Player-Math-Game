@@ -12,7 +12,7 @@ puts "#{p1.info} VS #{p2.info}... FIGHT!!! Uh I mean MATH!"
 
 current_player = p1
 
-#Initialize Game
+# Initialize Game
 game = Game.new
 
 while p1.lives.positive? || p2.lives.positive?
@@ -20,22 +20,26 @@ while p1.lives.positive? || p2.lives.positive?
   # score
   puts "#{p1.info} VS #{p2.info}"
 
+  # Check endgame (End While Loop)
   if p1.lives.zero? ||p2.lives.zero?
-    if p1.lives.zero?
-      #Winner becomes current player
-      current_player = p2
-    else
-      current_player = p1
-    end
+    # Winner becomes current player
+    current_player =
+      if p1.lives.zero?
+        p2
+      else
+        p1
+      end
     break
   end
 
-  if current_player == p1
-      current_player = p2
+  # change player
+  current_player =
+    if current_player == p1
+      p2
     else
-      current_player = p1
-  end
-    game.turn
+      p1
+    end
+  game.turn
 end
 
 puts "#{current_player.name} Wins with a score of #{current_player.lives}/3"
