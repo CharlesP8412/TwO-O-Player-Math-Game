@@ -19,7 +19,7 @@ class Game
   end
 
   def turn
-    puts '----- NEW TURN -----'
+    puts "\n----- NEW TURN -----"
   end
 end
 
@@ -40,6 +40,7 @@ class Player
   end
 end
 
+
 puts 'Want to play a game...Two Players Math!!!'
 # Initialize Players
 p1 = Player.new('Player 1')
@@ -55,5 +56,12 @@ while p1.lives > 0
   puts "#{p1.info} VS #{p2.info}"
   if p1.lives == 0 
     puts "Good game, goodbye"
+  else
+    if current_player == p1
+      current_player = p2
+    else
+      current_player = p1
+    end
+    game.turn
   end
 end
